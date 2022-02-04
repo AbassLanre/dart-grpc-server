@@ -8,7 +8,7 @@ service GroceriesService{
     rpc getAllItems(Empty) returns (Items);
     rpc getAllCategories(Empty) returns(Categories);
   
-    rpc getItem(Item) returns (Items);
+    rpc getItem(Item) returns (Item);
     rpc getCategory(Category) returns (Category);
 
     rpc editItem(Item) returns (Item);

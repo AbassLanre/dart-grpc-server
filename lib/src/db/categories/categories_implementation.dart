@@ -3,8 +3,8 @@ import 'package:dart_grpc_server/dart_grpc_server.dart';
 class CategoryServices implements ICategoriesServices {
   @override
   Category? createCategory(Category category) {
-    // TODO: implement createCategory
-    throw UnimplementedError();
+    categories.add({'id': category.id, 'name': category.name});
+    return category;
   }
 
   @override
