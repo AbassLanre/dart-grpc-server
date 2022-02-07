@@ -21,8 +21,9 @@ class CategoryServices implements ICategoriesServices {
 
   @override
   List<Category>? getCategories() {
-    // TODO: implement getCategories
-    throw UnimplementedError();
+    return categories
+        .map((category) => helper.getCategoryFromMap(category))
+        .toList();
   }
 
   @override
