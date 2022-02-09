@@ -73,6 +73,17 @@ class Client {
           case 8:
             break;
           case 9:
+            print('Enter category name');
+            var name = stdin.readLineSync()!;
+            var category = await _findCategoryByName(name);
+            if (category.id != 0) {
+              print(
+                  '-- category found | name: ${category.name} | id: ${category.id}');
+            } else {
+              print(
+                  '-x category not found| no category matches the name $name');
+            }
+
             break;
           case 10:
             break;
