@@ -22,6 +22,7 @@ class CategoryServices implements ICategoriesServices {
     } catch (e) {
       print('-x Error:: $e');
     }
+    return category;
   }
 
   @override
