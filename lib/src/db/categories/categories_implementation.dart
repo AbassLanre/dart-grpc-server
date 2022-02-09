@@ -15,8 +15,13 @@ class CategoryServices implements ICategoriesServices {
 
   @override
   Category? editcategory(Category category) {
-    // TODO: implement editcategory
-    throw UnimplementedError();
+    try {
+      var categoryIndex =
+          categories.indexWhere((element) => element['id'] == category.id);
+      categories[categoryIndex]['name'] = category.name;
+    } catch (e) {
+      print('-x Error:: $e');
+    }
   }
 
   @override
