@@ -25,7 +25,7 @@ class Client {
         print('1: View all products');
         print('2: Add new products');
         print('3: Edit products');
-        print('4: Get product products');
+        print('4: Get product');
         print('5: Delete products');
         print('6: View all categories');
         print('7: add new category');
@@ -38,12 +38,51 @@ class Client {
 
         switch (option) {
           case 1:
+            response = await stub!.getAllItems(Empty());
+            print('-- Store Products --');
+            response.items.forEach((item) {
+              print(
+                  '--: ${item.name} | (id: ${item.id} | categoryId: ${item.categoryId})}');
+            });
             break;
           case 2:
+            print('Enter product name');
+            var name = stdin.readLineSync()!;
+            var item = await _findItemByName(name);
+            if (item.id != 0) {
+              print('-x product already exists ${item.name} | id: ${item.id}');
+            } else {
+              print("Enter product's category name");
+              var categoryName = stdin.readLineSync()!;
+              var category = await _findCategoryByName(categoryName);
+              if (category.id == 0) {
+                print(
+                    '-x category $categoryName does not exist, try creating it forst');
+              } else {
+                item = Item()
+                  ..name = name
+                  ..id = _randomId()
+                  ..categoryId = category.id;
+                response = await stub!.createItem(item);
+                print(
+                    '-- Product created | name ${response.name} | id ${response.id} | categoryId ${response.categoryId}');
+              }
+            }
             break;
           case 3:
+            print('Enter product name');
+
             break;
           case 4:
+            print('Enter product name');
+            var name = stdin.readLineSync()!;
+            var item = await _findItemByName(name);
+            if (item.id != 0) {
+              print(
+                  '-- product found | name ${item.name} | id ${item.id} | category Id ${item.categoryId}');
+            } else {
+              print('-x product not found | no product matches the name $name');
+            }
             break;
           case 5:
             break;
@@ -103,6 +142,15 @@ class Client {
 
             break;
           case 10:
+            print('Enter category name');
+            var name = stdin.readLineSync()!;
+            var category = await _findCategoryByName(name);
+            if (category.id != 0) {
+              await stub!.deleteCategory(category);
+              print('-- category deleted');
+            } else {
+              print('category $name not found');
+            }
             break;
           case 11:
             break;

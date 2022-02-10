@@ -7,19 +7,17 @@ class GroceriesService extends GroceriesServiceBase {
       categoriesServices.createCategory(request)!;
 
   @override
-  Future<Item> createItem(ServiceCall call, Item request) {
-    // TODO: implement createItem
-    throw UnimplementedError();
+  Future<Item> createItem(ServiceCall call, Item request) async {
+    return itemServices.createItem(request)!;
   }
 
   @override
-  Future<Category> deleteCategory(ServiceCall call, Category request) {
-    // TODO: implement deleteCategory
-    throw UnimplementedError();
+  Future<Empty> deleteCategory(ServiceCall call, Category request) async {
+    return categoriesServices.deleteCategory(request)!;
   }
 
   @override
-  Future<Item> deleteItem(ServiceCall call, Item request) {
+  Future<Empty> deleteItem(ServiceCall call, Item request) {
     // TODO: implement deleteItem
     throw UnimplementedError();
   }
@@ -30,9 +28,8 @@ class GroceriesService extends GroceriesServiceBase {
   }
 
   @override
-  Future<Item> editItem(ServiceCall call, Item request) {
-    // TODO: implement editItem
-    throw UnimplementedError();
+  Future<Item> editItem(ServiceCall call, Item request) async {
+    return itemServices.editItem(request)!;
   }
 
   @override
@@ -41,9 +38,8 @@ class GroceriesService extends GroceriesServiceBase {
   }
 
   @override
-  Future<Items> getAllItems(ServiceCall call, Empty request) {
-    // TODO: implement getAllItems
-    throw UnimplementedError();
+  Future<Items> getAllItems(ServiceCall call, Empty request) async {
+    return Items()..items.addAll(itemServices.getItems()!);
   }
 
   @override
@@ -59,9 +55,8 @@ class GroceriesService extends GroceriesServiceBase {
   }
 
   @override
-  Future<Item> getItem(ServiceCall call, Item request) {
-    // TODO: implement getItem
-    throw UnimplementedError();
+  Future<Item> getItem(ServiceCall call, Item request) async {
+    return itemServices.getItemByName(request.name)!;
   }
 }
 

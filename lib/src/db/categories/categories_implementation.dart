@@ -9,8 +9,8 @@ class CategoryServices implements ICategoriesServices {
 
   @override
   Empty? deleteCategory(Category category) {
-    // TODO: implement deleteCategory
-    throw UnimplementedError();
+    categories.removeWhere((element) => element['id'] == category.id);
+    return Empty();
   }
 
   @override

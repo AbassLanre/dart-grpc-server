@@ -14,8 +14,8 @@ service GroceriesService{
     rpc editItem(Item) returns (Item);
     rpc editCategory(Category) returns (Category);
 
-    rpc deleteItem(Item) returns (Item);
-    rpc deleteCategory(Category) returns (Category);
+    rpc deleteItem(Item) returns (Empty);
+    rpc deleteCategory(Category) returns (Empty);
 
     rpc getItemsByCategory (Category) returns (AllItemsOfCategory); 
 }

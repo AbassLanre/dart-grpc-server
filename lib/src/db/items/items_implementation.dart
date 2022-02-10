@@ -3,8 +3,9 @@ import 'package:dart_grpc_server/dart_grpc_server.dart';
 class ItemServices implements IItemsServices {
   @override
   Item? createItem(Item item) {
-    // TODO: implement createItem
-    throw UnimplementedError();
+    items
+        .add({'id': item.id, 'name': item.name, 'categoryId': item.categoryId});
+    return item;
   }
 
   @override
@@ -15,26 +16,37 @@ class ItemServices implements IItemsServices {
 
   @override
   Item? editItem(Item item) {
-    // TODO: implement editItem
-    throw UnimplementedError();
+    try {
+      var itemIndex = items.indexWhere((element) => element['id'] == item.id);
+      categories[itemIndex]['name'] = item.name;
+    } catch (e) {
+      print('-x ERROR:: $e');
+    }
   }
 
   @override
-  Item? getItemById() {
-    // TODO: implement getItemById
-    throw UnimplementedError();
+  Item? getItemById(int id) {
+    var item = Item();
+    var result = items.where((element) => element['id'] == id).toList();
+    if (result.isNotEmpty) {
+      item = helper.getItemFromMap(result.first);
+    }
+    return item;
   }
 
   @override
   Item? getItemByName(String name) {
-    // TODO: implement getItemByName
-    throw UnimplementedError();
+    var item = Item();
+    var result = items.where((element) => element['name'] == name).toList();
+    if (result.isNotEmpty) {
+      item = helper.getItemFromMap(result.first);
+    }
+    return item;
   }
 
   @override
   List<Item>? getItems() {
-    // TODO: implement getItems
-    throw UnimplementedError();
+    return items.map((item) => helper.getItemFromMap(item)).toList();
   }
 
   @override

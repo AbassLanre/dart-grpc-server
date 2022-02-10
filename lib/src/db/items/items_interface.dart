@@ -4,7 +4,7 @@ abstract class IItemsServices {
   factory IItemsServices() => ItemServices();
 
   Item? getItemByName(String name) {}
-  Item? getItemById() {}
+  Item? getItemById(int id) {}
 
   Item? createItem(Item item) {}
   Item? editItem(Item item) {}

@@ -46,14 +46,14 @@ class GroceriesServiceClient extends $grpc.Client {
       '/GroceriesService/editCategory',
       ($0.Category value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.Category.fromBuffer(value));
-  static final _$deleteItem = $grpc.ClientMethod<$0.Item, $0.Item>(
+  static final _$deleteItem = $grpc.ClientMethod<$0.Item, $0.Empty>(
       '/GroceriesService/deleteItem',
       ($0.Item value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.Item.fromBuffer(value));
-  static final _$deleteCategory = $grpc.ClientMethod<$0.Category, $0.Category>(
+      ($core.List<$core.int> value) => $0.Empty.fromBuffer(value));
+  static final _$deleteCategory = $grpc.ClientMethod<$0.Category, $0.Empty>(
       '/GroceriesService/deleteCategory',
       ($0.Category value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.Category.fromBuffer(value));
+      ($core.List<$core.int> value) => $0.Empty.fromBuffer(value));
   static final _$getItemsByCategory =
       $grpc.ClientMethod<$0.Category, $0.AllItemsOfCategory>(
           '/GroceriesService/getItemsByCategory',
@@ -106,12 +106,12 @@ class GroceriesServiceClient extends $grpc.Client {
     return $createUnaryCall(_$editCategory, request, options: options);
   }
 
-  $grpc.ResponseFuture<$0.Item> deleteItem($0.Item request,
+  $grpc.ResponseFuture<$0.Empty> deleteItem($0.Item request,
       {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$deleteItem, request, options: options);
   }
 
-  $grpc.ResponseFuture<$0.Category> deleteCategory($0.Category request,
+  $grpc.ResponseFuture<$0.Empty> deleteCategory($0.Category request,
       {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$deleteCategory, request, options: options);
   }
@@ -183,20 +183,20 @@ abstract class GroceriesServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $0.Category.fromBuffer(value),
         ($0.Category value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.Item, $0.Item>(
+    $addMethod($grpc.ServiceMethod<$0.Item, $0.Empty>(
         'deleteItem',
         deleteItem_Pre,
         false,
         false,
         ($core.List<$core.int> value) => $0.Item.fromBuffer(value),
-        ($0.Item value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.Category, $0.Category>(
+        ($0.Empty value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.Category, $0.Empty>(
         'deleteCategory',
         deleteCategory_Pre,
         false,
         false,
         ($core.List<$core.int> value) => $0.Category.fromBuffer(value),
-        ($0.Category value) => value.writeToBuffer()));
+        ($0.Empty value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.Category, $0.AllItemsOfCategory>(
         'getItemsByCategory',
         getItemsByCategory_Pre,
@@ -246,12 +246,12 @@ abstract class GroceriesServiceBase extends $grpc.Service {
     return editCategory(call, await request);
   }
 
-  $async.Future<$0.Item> deleteItem_Pre(
+  $async.Future<$0.Empty> deleteItem_Pre(
       $grpc.ServiceCall call, $async.Future<$0.Item> request) async {
     return deleteItem(call, await request);
   }
 
-  $async.Future<$0.Category> deleteCategory_Pre(
+  $async.Future<$0.Empty> deleteCategory_Pre(
       $grpc.ServiceCall call, $async.Future<$0.Category> request) async {
     return deleteCategory(call, await request);
   }
@@ -273,8 +273,8 @@ abstract class GroceriesServiceBase extends $grpc.Service {
   $async.Future<$0.Item> editItem($grpc.ServiceCall call, $0.Item request);
   $async.Future<$0.Category> editCategory(
       $grpc.ServiceCall call, $0.Category request);
-  $async.Future<$0.Item> deleteItem($grpc.ServiceCall call, $0.Item request);
-  $async.Future<$0.Category> deleteCategory(
+  $async.Future<$0.Empty> deleteItem($grpc.ServiceCall call, $0.Item request);
+  $async.Future<$0.Empty> deleteCategory(
       $grpc.ServiceCall call, $0.Category request);
   $async.Future<$0.AllItemsOfCategory> getItemsByCategory(
       $grpc.ServiceCall call, $0.Category request);
