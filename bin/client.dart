@@ -71,7 +71,22 @@ class Client {
             break;
           case 3:
             print('Enter product name');
-
+            var name = stdin.readLineSync()!;
+            var item = await _findItemByName(name);
+            if (item.id != 0) {
+              print('Enter new Product name');
+              name = stdin.readLineSync()!;
+              response = await stub!.editItem(
+                  Item(id: item.id, name: name, categoryId: item.categoryId));
+              if (response.name == name) {
+                print(
+                    '-- product updated | name ${response.name} | id ${response.id}');
+              } else {
+                print('-x product upload failed');
+              }
+            } else {
+              print('-x product $name not found, try creating it');
+            }
             break;
           case 4:
             print('Enter product name');
@@ -85,6 +100,15 @@ class Client {
             }
             break;
           case 5:
+            print('Enter Product name');
+            var name = stdin.readLineSync()!;
+            var item = await _findItemByName(name);
+            if (item.id != 0) {
+              await stub!.deleteItem(item);
+              print('-- item deleted');
+            } else {
+              print('-x product $name does not exists');
+            }
             break;
           case 6:
             response = await stub!.getAllCategories(Empty());
@@ -153,6 +177,18 @@ class Client {
             }
             break;
           case 11:
+            print('Enter category name');
+            var name = stdin.readLineSync()!;
+            var category = await _findCategoryByName(name);
+            if (category.id != 0) {
+              var _result = await stub!.getItemsByCategory(category);
+              print('--- all products of the $name category ---');
+              _result.items.forEach((item) {
+                print('-> ${item.name}');
+              });
+            } else {
+              print('-x category $name not found');
+            }
             break;
           default:
             print('invalid option');

@@ -10,7 +10,7 @@ abstract class IItemsServices {
   Item? editItem(Item item) {}
   Empty? deleteItem(Item item) {}
   List<Item>? getItems() {}
-  List<Item>? getItemsbyCategory() {}
+  List<Item>? getItemsbyCategory(int categoryId) {}
 }
 
 final itemServices = ItemServices();

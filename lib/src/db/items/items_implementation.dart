@@ -10,18 +10,19 @@ class ItemServices implements IItemsServices {
 
   @override
   Empty? deleteItem(Item item) {
-    // TODO: implement deleteItem
-    throw UnimplementedError();
+    items.removeWhere((element) => element['id'] == item.id);
+    return Empty();
   }
 
   @override
   Item? editItem(Item item) {
     try {
       var itemIndex = items.indexWhere((element) => element['id'] == item.id);
-      categories[itemIndex]['name'] = item.name;
+      items[itemIndex]['name'] = item.name;
     } catch (e) {
       print('-x ERROR:: $e');
     }
+    return item;
   }
 
   @override
@@ -50,8 +51,11 @@ class ItemServices implements IItemsServices {
   }
 
   @override
-  List<Item>? getItemsbyCategory() {
-    // TODO: implement getItemsbyCategory
-    throw UnimplementedError();
+  List<Item>? getItemsbyCategory(int categoryId) {
+    var result = <Item>[];
+    var jsonList =
+        items.where((element) => element['categoryId'] == categoryId).toList();
+    result = jsonList.map((item) => helper.getItemFromMap(item)).toList();
+    return result;
   }
 }

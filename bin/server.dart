@@ -17,9 +17,8 @@ class GroceriesService extends GroceriesServiceBase {
   }
 
   @override
-  Future<Empty> deleteItem(ServiceCall call, Item request) {
-    // TODO: implement deleteItem
-    throw UnimplementedError();
+  Future<Empty> deleteItem(ServiceCall call, Item request) async {
+    return itemServices.deleteItem(request)!;
   }
 
   @override
@@ -49,9 +48,10 @@ class GroceriesService extends GroceriesServiceBase {
 
   @override
   Future<AllItemsOfCategory> getItemsByCategory(
-      ServiceCall call, Category request) {
-    // TODO: implement getItemsByCategory
-    throw UnimplementedError();
+      ServiceCall call, Category request) async {
+    return AllItemsOfCategory(
+        items: itemServices.getItemsbyCategory(request.id)!,
+        categoryId: request.id);
   }
 
   @override
